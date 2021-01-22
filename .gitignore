@@ -1,0 +1,15 @@
+node_modules
+npm-debug.log
+.DS_Store
+dist
+build
+.idea
+.vscode
+build
+apidoc
+coverage
+_files
+package-lock.json
+yarn.lock
+run
+logs

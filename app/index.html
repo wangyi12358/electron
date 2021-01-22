@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+  <title>云货架</title>
+</head>
+
+<body>
+  <div id="root">
+    这是一个electron
+  </div>
+  <!-- <div id="modal"></div> -->
+  <script>
+    const { ipcRenderer } = require('electron');
+
+    // 启动本地服务
+    const server = require('./server');
+    const handle = {};
+    handle['/accept'] = function(req, res) {
+      const {rfId} = req.query;
+      console.log(rfId);
+      if (rfId && window.onRFID) {
+        window.onRFID(rfId);
+      }
+      return {
+        code: 0,
+        msg: 'ok',
+        success: true,
+        data: {},
+      }
+    };
+    server(handle, 5000);
+
+    // 版本检测
+    ipcRenderer.on('message', (event, { message, data }) => {
+      console.log(message, 'message === >>>')
+      switch (message) {
+        case 'isUpdateNow':
+          if (confirm('检测到新版本，是否立即更新？')) ipcRenderer.send('updateNow');
+          break;
+        case 'sendToken': {
+          CFG.token = data;
+          break;
+        }
+        default:
+          break;
+      }
+    });
+
+
+
+    window.addEventListener('online', function () {
+      CFG.online = true;
+    });
+    window.addEventListener('offline', function () {
+      CFG.online = false;
+    });
+
+
+  </script>
+</body>
+
+</html>

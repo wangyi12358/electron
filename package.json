@@ -1,0 +1,54 @@
+{
+  "name": "yooofun",
+  "version": "1.0.3",
+  "description": "",
+  "main": "./app/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dist": "electron-builder --win --x64",
+    "start": "electron ."
+  },
+  "build": {
+    "productName": "DingLink云屏系统",
+    "appId": "com.xxx.app",
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "win": {
+      "icon": "icon/logo.ico",
+      "artifactName": "latest.${ext}",
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    },
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "https://cloud-c.oss-cn-zhangjiakou.aliyuncs.com/exe/"
+      }
+    ],
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "include": "installer.nsh"
+    }
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^4.0.0",
+    "node-machine-id": "^1.1.12"
+  },
+  "dependencies": {
+    "electron-updater": "^4.0.6",
+    "install": "^0.13.0",
+    "lazy-val": "^1.0.4",
+    "serialport": "^8.0.7"
+  }
+}

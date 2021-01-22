@@ -1,0 +1,3 @@
+provider: generic
+url: 'https://haierstore.zjk.taeapp.com/exe/'
+updaterCacheDirName: test-updater
