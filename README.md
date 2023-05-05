@@ -1,4 +1,4 @@
-# YOOOFUNelectron
+# electron-builder-example
 
 ### 使用流程
 1. npm install electron-builder@20.44.4 -g 全局安装electron-builder。
